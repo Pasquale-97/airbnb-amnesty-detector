@@ -1,9 +1,15 @@
-# airbnb-amnesty-detector
+# Airbnb Amnesty Detector
 
 ## Summary
 
-- Include a screen recording of the application.
-- An overview of what the project is:
+
+
+https://user-images.githubusercontent.com/66837999/126921956-84f899f2-4c88-4f34-a5cd-1aaea5a6ba95.mp4
+
+
+
+
+- An overview:
     - A replication of the object detection system used by Airbnb to detect objects in a room. This was created by using YOLO V5 on the Open Images dataset. Talk about how many different objects and the accuracy.
     - Developed a frontend using Streamlit.
     - Wrapped in a Dockerfile and deployed to Google Cloud.
@@ -32,9 +38,7 @@ Upon reflection of the project we set some goals and we achieved them! If you'd 
 ## Data Gathering
 
 ### Categories
-
-![https://s3-us-west-2.amazonaws.com/secure.notion-static.com/8359eebd-c554-42fd-837e-55aba24d5625/Untitled.png](https://s3-us-west-2.amazonaws.com/secure.notion-static.com/8359eebd-c554-42fd-837e-55aba24d5625/Untitled.png)
-
+![Untitled](https://user-images.githubusercontent.com/66837999/126919959-7ee69f9a-8478-4525-8f16-35c5d09c6518.png)
 Mean average precision of the 30 categories used by Airbnb.
 
 - The data will be scrapped from Openimages v6 using two different Python scripts.
@@ -49,7 +53,7 @@ To do this we must train an object detection system to be able to recognise the 
 
 ## What is YOLOv5?
 
-YOLO is an abbreviation for "You Only Look Once" and is a popular method for object detection used in the world of Computer Vision. This algorithm is popular due to its ability of detecting objects in real time. To read a full description of how YOLO works, see [here]([https://www.section.io/engineering-education/introduction-to-yolo-algorithm-for-object-detection/](https://www.section.io/engineering-education/introduction-to-yolo-algorithm-for-object-detection/)) but I will provide a simple overview below:
+YOLO is an abbreviation for "You Only Look Once" and is a popular method for object detection used in the world of Computer Vision. This algorithm is popular due to its ability of detecting objects in real time. To read a full description of how YOLO works, [see here](https://www.section.io/engineering-education/introduction-to-yolo-algorithm-for-object-detection/), but I will provide a simple overview below:
 
 YOLO is a combination of three techniques:
 
@@ -114,12 +118,10 @@ OIDv6 → [https://www.kaggle.com/getting-started/157163](https://www.kaggle.com
 
 ### Data Formatting
 
-![https://s3-us-west-2.amazonaws.com/secure.notion-static.com/a253aec2-7c8b-41ab-88e4-70feba11937c/Untitled.png](https://s3-us-west-2.amazonaws.com/secure.notion-static.com/a253aec2-7c8b-41ab-88e4-70feba11937c/Untitled.png)
-
+![Untitled](https://user-images.githubusercontent.com/66837999/126920036-9f2e302c-eea5-4383-bd7d-80a578a36722.png)
 The label file corresponding to the above image contains 2 persons (class 0) and a tie (class 27):
 
-![https://s3-us-west-2.amazonaws.com/secure.notion-static.com/c5cd8c33-eac2-4620-8378-01de3c9ffb5f/Untitled.png](https://s3-us-west-2.amazonaws.com/secure.notion-static.com/c5cd8c33-eac2-4620-8378-01de3c9ffb5f/Untitled.png)
-
+![Untitled-1](https://user-images.githubusercontent.com/66837999/126920040-5510995d-684b-4b3d-972a-c53d49facb70.png)
 Format required to train YOLO model.
 
 Once the images and labels have been obtained, in order to begin training a YOLO model we need to convert our labels into YOLO format (see image above). There are a variety of methods to convert the data into this required format. Resources such as Roboflow can convert images into the format required however this does cost money. In this scenario we will be using Python in order to convert all the labels in order to begin training our model. So lets take a look at a label in Open Image format.
@@ -244,12 +246,10 @@ When evaluating our model, the most important metric to pay attention to is the 
 
 The results showed a mAP of 83% which is a promising sign for a single class. Due to this we determine that YOLOv5 is sufficient to be used in this project. Here is an example of some predictions of this small model:
 
-![https://s3-us-west-2.amazonaws.com/secure.notion-static.com/56a75b9d-8c60-47dc-86ae-2940317478a4/media_images_Validation_99_4.jpg](https://s3-us-west-2.amazonaws.com/secure.notion-static.com/56a75b9d-8c60-47dc-86ae-2940317478a4/media_images_Validation_99_4.jpg)
-
+![media_images_Validation_99_4](https://user-images.githubusercontent.com/66837999/126920092-448f675e-210f-4da0-bf14-fed1ba30e7f8.png)
 Labelled Image → Correctly labelled image from Open Images.
 
-![https://s3-us-west-2.amazonaws.com/secure.notion-static.com/e26b46df-20bd-4077-b231-0d204808c8dd/media_images_Validation_99_5.jpg](https://s3-us-west-2.amazonaws.com/secure.notion-static.com/e26b46df-20bd-4077-b231-0d204808c8dd/media_images_Validation_99_5.jpg)
-
+![media_images_Validation_99_5](https://user-images.githubusercontent.com/66837999/126920299-29b04aa7-83de-4141-b4e0-6432b821f820.png)
 Model predictions → What the model has detected within the image.
 
 ### Scaling up the model
@@ -289,17 +289,48 @@ Now that we have all the data we need and converted it into the correct format w
 
 After leaving the model for around 16 hours to train, we now have a fully trained model where we can evaluate how effective it is by using Weights & Bias. The value we're particularly interested in is the mAP@0.5 to determine how well our model has done. After looking at the results we can see that the mAP reaches 0.557 or 55.7%, which is really cool! Especially considering Airbnb managed to get around 68% with extra data that we did not have access to so we're not too far off. See below for the full results of training a YOLOv5s model on around 30,000 images in 30 categories.
 
-![https://s3-us-west-2.amazonaws.com/secure.notion-static.com/6ba6bd11-5157-4632-8b6a-b6d2b8ada89b/media_images_Results_50_0.png](https://s3-us-west-2.amazonaws.com/secure.notion-static.com/6ba6bd11-5157-4632-8b6a-b6d2b8ada89b/media_images_Results_50_0.png)
-
+![media_images_Results_50_0](https://user-images.githubusercontent.com/66837999/126920345-1e995661-6216-489c-88f6-a817f60110af.png)
 Evaluation of model over time using Weights & Bias
 
-![https://s3-us-west-2.amazonaws.com/secure.notion-static.com/470930dd-dff9-4670-a949-a242ce56b3e5/media_images_Results_50_1.png](https://s3-us-west-2.amazonaws.com/secure.notion-static.com/470930dd-dff9-4670-a949-a242ce56b3e5/media_images_Results_50_1.png)
-
+![media_images_Results_50_1](https://user-images.githubusercontent.com/66837999/126920356-7e71fae6-a4be-4c10-8543-621f51131b6b.png)
 Confusion Matrix
 
 The confusion matrix shows how accurate the model is for individual classes based on what the actual label in the image is (x-axis) and what the model predicted (y-axis). The darker the box, the more accurate the model is for that particular class.
 
-[Accuracy for each class:](https://www.notion.so/c3c630e1949d404fac6491e1ed633b89)
+***Results for each class:***
+
+| Class                       | mAP @.5 |
+|-----------------------------|---------|
+| Refrigerator                | 0.952   |
+| Swimming pool               | 0.93    |
+| Ceiling fan                 | 0.909   |
+| Billiard table              | 0.9     |
+| Television                  | 0.834   |
+| Mirror                      | 0.822   |
+| Bed                         | 0.799   |
+| Toilet                      | 0.769   |
+| Coffeemaker                 | 0.736   |
+| Washing machine             | 0.724   |
+| Microwave oven              | 0.689   |
+| Sofa bed                    | 0.67    |
+| Sink                        | 0.628   |
+| Fountain                    | 0.574   |
+| Tree house                  | 0.57    |
+| Fireplace                   | 0.548   |
+| Stairs                      | 0.531   |
+| Wine rack                   | 0.505   |
+| Bathtub                     | 0.442   |
+| Jacuzzi                     | 0.352   |
+| Couch                       | 0.347   |
+| Gas stove                   | 0.347   |
+| Towel                       | 0.307   |
+| Kitchen & dining room table | 0.301   |
+| Countertop                  | 0.27    |
+| Oven                        | 0.24    |
+| Pillow                      | 0.239   |
+| Porch                       | 0.177   |
+| Shower                      | 0.0426  |
+
 
 **Example Predictions:**
 
@@ -309,32 +340,31 @@ Looking at some of the predictions shows some interesting results. For example i
 
 **Test batch 1:**
 
-![https://s3-us-west-2.amazonaws.com/secure.notion-static.com/d3c6a705-2138-4f7e-9737-01e42c8fd11d/media_images_Validation_49_0.jpg](https://s3-us-west-2.amazonaws.com/secure.notion-static.com/d3c6a705-2138-4f7e-9737-01e42c8fd11d/media_images_Validation_49_0.jpg)
-
+![media_images_Validation_49_0](https://user-images.githubusercontent.com/66837999/126920373-1c086a84-63e0-47ef-897b-d3b128773169.jpg)
 test_batch0_labels.jpg - Labelled images
 
-![https://s3-us-west-2.amazonaws.com/secure.notion-static.com/314164bd-d861-4f21-8017-6c45a34469f4/media_images_Validation_49_1.jpg](https://s3-us-west-2.amazonaws.com/secure.notion-static.com/314164bd-d861-4f21-8017-6c45a34469f4/media_images_Validation_49_1.jpg)
 
+![media_images_Validation_49_1](https://user-images.githubusercontent.com/66837999/126920384-c2905daf-6e64-44b0-837d-a82dc381a0dc.jpg)
 test_batch0_pred.jpg - Model prediction
+
 
 **Test batch 2:**
 
-![https://s3-us-west-2.amazonaws.com/secure.notion-static.com/83ab6ba1-4a84-4e49-a5b8-dbe7f7ae2832/media_images_Validation_49_2.jpg](https://s3-us-west-2.amazonaws.com/secure.notion-static.com/83ab6ba1-4a84-4e49-a5b8-dbe7f7ae2832/media_images_Validation_49_2.jpg)
-
+![media_images_Validation_49_2](https://user-images.githubusercontent.com/66837999/126920391-e719a997-f3c6-4ba9-a8ae-e72929aa6141.jpg)
 test_batch1_labels.jpg - Labelled images
 
-![https://s3-us-west-2.amazonaws.com/secure.notion-static.com/78b62268-31d0-49f2-97fb-cf9efebf51ea/media_images_Validation_49_3.jpg](https://s3-us-west-2.amazonaws.com/secure.notion-static.com/78b62268-31d0-49f2-97fb-cf9efebf51ea/media_images_Validation_49_3.jpg)
 
+![media_images_Validation_49_3](https://user-images.githubusercontent.com/66837999/126920397-f176880c-5a6a-4f9f-a015-b307cc454b0d.jpg)
 test_batch1_pred.jpg - Model prediction
+
 
 **Test batch 3**
 
-![https://s3-us-west-2.amazonaws.com/secure.notion-static.com/1ea46cd2-2637-49d8-a0be-093daaa177a4/media_images_Validation_49_4.jpg](https://s3-us-west-2.amazonaws.com/secure.notion-static.com/1ea46cd2-2637-49d8-a0be-093daaa177a4/media_images_Validation_49_4.jpg)
-
+![media_images_Validation_49_4](https://user-images.githubusercontent.com/66837999/126920408-1c146c63-0569-4bcf-a794-0059e46728e5.jpg)
 test_batch2_labels.jpg - Labelled images
 
-![https://s3-us-west-2.amazonaws.com/secure.notion-static.com/2f8bcc4a-fd55-48b1-b2b8-2f684fbed150/media_images_Validation_49_5.jpg](https://s3-us-west-2.amazonaws.com/secure.notion-static.com/2f8bcc4a-fd55-48b1-b2b8-2f684fbed150/media_images_Validation_49_5.jpg)
 
+![media_images_Validation_49_5](https://user-images.githubusercontent.com/66837999/126920432-c5d28ee4-1756-46f3-bacc-45f8f480923a.jpg)
 test_batch2_pred.jpg - Model prediction
 
 ## Creation of Web Application
@@ -361,7 +391,7 @@ Copy our best performing model into our drive
 
 **Streamlit**
 
-Streamlit allows for us to bring our models to life by allowing for simple creation of a frontend of our model. Creating a frontend for our models is really important, as models tend to get left in the Jupyter notebook which doesn't allow for average person interaction. This is important to note as the majority of people using our models, whatever they may be won't know how to use Jupyter notebook. Plus, who doesn't like a cool frontend to look at. There's alternatives such as Flask [see here]([https://github.com/Pasquale-97/spotify-recommender](https://github.com/Pasquale-97/spotify-recommender)), however, in this scenario we will be using Streamlit. Before reading on, please checkout this [Github repo]([https://github.com/hassan-baydoun/python_final_project](https://github.com/hassan-baydoun/python_final_project)) that really helped implement the front end.
+Streamlit allows for us to bring our models to life by allowing for simple creation of a frontend of our model. Creating a frontend for our models is really important, as models tend to get left in the Jupyter notebook which doesn't allow for average person interaction. This is important to note as the majority of people using our models, whatever they may be won't know how to use Jupyter notebook. Plus, who doesn't like a cool frontend to look at. There's alternatives such as Flask [see here](https://github.com/Pasquale-97/spotify-recommender), however, in this scenario we will be using Streamlit. Before reading on, please checkout this [Github repo](https://github.com/hassan-baydoun/python_final_project) that really helped implement the front end.
 
 Private functions:
 
@@ -527,4 +557,10 @@ if __name__ == "__main__":
 
 ## References
 
-[Useful Resources](https://www.notion.so/93d808670134460c9833c77e668881f7)
+| Name                                     | Tags | Link                                                                                                       | Description                                                                       |
+|------------------------------------------|------|------------------------------------------------------------------------------------------------------------|-----------------------------------------------------------------------------------|
+| Yolo v5 implementation                   | code | https://awesomeopensource.com/project/ultralytics/yolov5                                                   | How to implement Yolov5.                                                          |
+| Streamlit                                | code | https://medium.com/analytics-vidhya/road-damage-detection-for-multiple-countries-using-yolov3-51fc7c6b43bd | Creation of Streamlit app.                                                        |
+| Streamlit Example                        | code | https://github.com/hassan-baydoun/python_final_project                                                     | Template for Streamlit app.                                                       |
+| Roboflow Training Yolov5 on curstom data | code | https://blog.roboflow.com/how-to-train-yolov5-on-a-custom-dataset/                                         | Implementing Yolov5 on custom dataset.                                            |
+| What is mean average precision?          | info | https://blog.roboflow.com/mean-average-precision/                                                          | Description of why mAP@.5 is the most important value to take into consideration. |
