@@ -121,9 +121,11 @@ OIDv6 → [https://www.kaggle.com/getting-started/157163](https://www.kaggle.com
 ### Data Formatting
 
 ![Untitled](https://user-images.githubusercontent.com/66837999/126920036-9f2e302c-eea5-4383-bd7d-80a578a36722.png)
+
 The label file corresponding to the above image contains 2 persons (class 0) and a tie (class 27):
 
 ![Untitled-1](https://user-images.githubusercontent.com/66837999/126920040-5510995d-684b-4b3d-972a-c53d49facb70.png)
+
 Format required to train YOLO model.
 
 Once the images and labels have been obtained, in order to begin training a YOLO model we need to convert our labels into YOLO format (see image above). There are a variety of methods to convert the data into this required format. Resources such as Roboflow can convert images into the format required however this does cost money. In this scenario we will be using Python in order to convert all the labels in order to begin training our model. So lets take a look at a label in Open Image format.
