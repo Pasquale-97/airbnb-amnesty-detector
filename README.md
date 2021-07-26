@@ -17,7 +17,7 @@ https://user-images.githubusercontent.com/66837999/126921956-84f899f2-4c88-4f34-
 ## Introduction
 Artificial Intelligence is slowly integrating into companies everyday, with many of the leading tech companies leading the way. Airbnb uses deep learning on their billions of images to identify what objects are within a room as we speak. This project was inspired by Dan Bourkes 42 day project that you can [see here](https://github.com/mrdbourke/airbnb-amenity-detection). To see how Airbnb themselves went about completing the project [click here](https://medium.com/airbnb-engineering/amenity-detection-and-beyond-new-frontiers-of-computer-vision-at-airbnb-144a4441b72e). 
 
-In this project we will create an end to end replica of Airbnbs Amnesty Detector to detect objects within a room. Python will be used for data formatting and file manipulation, YOLOv5 will be implemented for object detection, Streamlit will be used for the frontend. The application will then be wrapped in a Docker file and deployed to Google Cloud.
+In this project we will create an end to end replica of Airbnb's Amnesty Detector to detect objects within a room. Python will be used for data formatting and file manipulation, YOLOv5 will be implemented for object detection, Streamlit will be used for the frontend. The application will then be wrapped in a Docker file and deployed to Google Cloud.
  
 
 ## Goals
