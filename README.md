@@ -559,6 +559,10 @@ if __name__ == "__main__":
     main()
 ```
 
+## **Coming Soon**
+
+## Deploying web application to cloud server
+
 ## References
 
 | Name                                     | Tags | Link                                                                                                       | Description                                                                       |
@@ -568,3 +572,4 @@ if __name__ == "__main__":
 | Streamlit Example                        | code | https://github.com/hassan-baydoun/python_final_project                                                     | Template for Streamlit app.                                                       |
 | Roboflow Training Yolov5 on curstom data | code | https://blog.roboflow.com/how-to-train-yolov5-on-a-custom-dataset/                                         | Implementing Yolov5 on custom dataset.                                            |
 | What is mean average precision?          | info | https://blog.roboflow.com/mean-average-precision/                                                          | Description of why mAP@.5 is the most important value to take into consideration. |
+
